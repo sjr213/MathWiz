@@ -1,0 +1,56 @@
+﻿<Window x:Class="DrawWiz.TextDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Text Information" SizeToContent="Height"  Width="300" ResizeMode="NoResize" FontSize="16"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}" x:Key="textBoxStyle">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self}, 
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+        <Grid >   
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Enter text:" Margin="5"/>
+        <TextBox Grid.Column="1" Margin="5" x:Name="_text" MinWidth="50" AcceptsReturn="True"
+                 Text="{Binding Text, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                 Style="{StaticResource textBoxStyle}"/>
+        <TextBlock Text="Font Family" Margin="5" Grid.Row="1" />
+        <ComboBox x:Name="_family" Grid.Row="1" Grid.Column="1" Margin="5"
+                  SelectedItem="{Binding Family, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Font Style" Margin="5" Grid.Row="2" />
+        <ComboBox x:Name="_styles" Grid.Row="2" Grid.Column="1" Margin="5"
+                  SelectedItem="{Binding Style, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Text="Font Weight" Margin="5" Grid.Row="3" />
+        <ComboBox x:Name="_weight" Grid.Row="3" Grid.Column="1" Margin="5"
+                  SelectedItem="{Binding Weight, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Text="Font Size" Margin="5" Grid.Row="4" />
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="5" Width="50" HorizontalAlignment="Left"      
+                 Text="{Binding Size, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                 Style="{StaticResource textBoxStyle}">
+        </TextBox>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="5" Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center">
+            <Button Content="OK" Margin="4" Click="OnOk" x:Name="_ok" IsEnabled="{Binding EnableOK}">
+            </Button>
+            <Button Content="Cancel" Margin="4" Click="OnCancel"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>

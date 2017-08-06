@@ -1,0 +1,122 @@
+﻿<Window x:Class="DrawWiz.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:DrawWiz"
+        Title="Draw Wiz" Height="350" Width="525">
+    <Window.Resources>
+        <local:EnumConverter x:Key="enumConverter" />
+        <Style TargetType="RadioButton" x:Key="colorButtonStyle" BasedOn="{StaticResource {x:Type ToggleButton}}" >
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Padding" Value="2" />
+        </Style>
+        <Style TargetType="Rectangle" x:Key="colorRectStyle" >
+            <Setter Property="Width" Value="25" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="RadiusX" Value="5" />
+            <Setter Property="RadiusY" Value="5" />
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <ToolBar DockPanel.Dock="Top">
+            <Button Command="{Binding NewFileCommand}" ToolTip="New">
+                <Image Source="Images\NewFile.jpg" MaxHeight="30" MaxWidth="30"/>
+            </Button>
+            <Button Command="{Binding SaveAsCommand}" ToolTip="Save As">
+                <Image Source="Images\SaveAsBtn.jpg" MaxHeight="30" MaxWidth="30"/>
+            </Button>
+            <Button Command="{Binding OpenCommand}" ToolTip="Open">
+                <Image Source="Images\OpenPL.bmp" MaxHeight="30" MaxWidth="30" />
+            </Button>
+            <Button IsEnabled="{Binding ElementIsSelected}" Command="{Binding DeleteCommand}"  ToolTip="Delete">
+                <Image Source="Images\Delete.png" MaxHeight="30" MaxWidth="30" />
+            </Button>
+            <Button Click="OnMoveForward"  IsEnabled="{Binding ElementIsSelected}" ToolTip="Move Forward">
+                <Image Source ="Images\Forward.png" MaxHeight="30" MaxWidth="30" />
+            </Button>
+            <Button Click="OnMoveBehind"  IsEnabled="{Binding ElementIsSelected}" ToolTip="Move Back">
+                <Image Source ="Images\Back.png" MaxHeight="30" MaxWidth="30" />
+            </Button>
+        </ToolBar>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <RadioButton GroupName="theShapes" Style="{StaticResource {x:Type ToggleButton}}" Margin="5" Padding="5" ToolTip="Oval"
+                         IsChecked="{Binding Path=TheShape, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=ellipseType}">
+                <Ellipse Width="20" Height="20" Fill="Blue"/>
+            </RadioButton>
+            <RadioButton GroupName="theShapes" Style="{StaticResource {x:Type ToggleButton}}" Margin="5" Padding="5" ToolTip="Rectangle"
+                         IsChecked="{Binding Path=TheShape, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=rectangleType}">
+                <Rectangle Width="20" Height="20" Fill="Blue" />
+            </RadioButton>
+            <RadioButton GroupName="theShapes" Style="{StaticResource {x:Type ToggleButton}}" Margin="5" Padding="5" ToolTip="Line"
+                         IsChecked="{Binding Path=TheShape, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=lineType}">
+                <Grid>
+                    <Rectangle Width="20" Height="20" Fill="White" />
+                    <Line Stroke="Blue" StrokeThickness="3" X1="2" Y1="5" X2="18" Y2="15"/>
+                </Grid>
+            </RadioButton>
+            <RadioButton GroupName="theShapes" Style="{StaticResource {x:Type ToggleButton}}" Margin="5" Padding="5" ToolTip="Triangle"
+                         IsChecked="{Binding Path=TheShape, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=triangleType}">
+                <Polygon Points="0,20 10,0 20,20" Fill="Blue" Stroke="Blue" />
+            </RadioButton>
+            <RadioButton GroupName="theShapes" Style="{StaticResource {x:Type ToggleButton}}" Margin="5" Padding="5" ToolTip="Free"
+                         IsChecked="{Binding Path=TheShape, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=freeHandType}">
+                <Image Source="Images\FreeShape.png" Width="20" Height="20"/>
+            </RadioButton>
+            <RadioButton GroupName="theShapes" Style="{StaticResource {x:Type ToggleButton}}" Margin="5" Padding="5" ToolTip="Text"
+                         IsChecked="{Binding Path=TheShape, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=textType}">
+                <Image Source="Images\T.png" Width="20" Height="20" />
+            </RadioButton>
+            <RadioButton GroupName="theShapes" Style="{StaticResource {x:Type ToggleButton}}" Margin="5" Padding="5" ToolTip="Curve"
+                         IsChecked="{Binding Path=TheShape, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=curveType}">
+                <Image Source="Images\Curve.png" Width="20" Height="20" />
+            </RadioButton>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <RadioButton GroupName="theColors" Style="{StaticResource colorButtonStyle}" ToolTip="Red"
+                         IsChecked="{Binding Path=TheColor, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=redShape}">
+                <Rectangle Fill="Red" Style="{StaticResource colorRectStyle}"/>
+            </RadioButton>
+            <RadioButton GroupName="theColors" Style="{StaticResource colorButtonStyle}" ToolTip="Orange"
+                         IsChecked="{Binding Path=TheColor, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=orangeShape}">
+                <Rectangle Style="{StaticResource colorRectStyle}" Fill="Orange" />
+            </RadioButton>
+            <RadioButton GroupName="theColors" Style="{StaticResource colorButtonStyle}" ToolTip="Yellow"
+                         IsChecked="{Binding Path=TheColor, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=yellowShape}">
+                <Rectangle Style="{StaticResource colorRectStyle}" Fill="Yellow" />
+            </RadioButton>
+            <RadioButton GroupName="theColors" Style="{StaticResource colorButtonStyle}" ToolTip="Green"
+                         IsChecked="{Binding Path=TheColor, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=greenShape}">
+                <Rectangle Style="{StaticResource colorRectStyle}" Fill="Green" />
+            </RadioButton>
+            <RadioButton GroupName="theColors" Style="{StaticResource colorButtonStyle}" ToolTip="Blue"
+                         IsChecked="{Binding Path=TheColor, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=blueShape}">
+                <Rectangle Style="{StaticResource colorRectStyle}" Fill="Blue" />
+            </RadioButton>
+            <RadioButton GroupName="theColors" Style="{StaticResource colorButtonStyle}" ToolTip="Purple"
+                         IsChecked="{Binding Path=TheColor, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=purpleShape}">
+                <Rectangle Style="{StaticResource colorRectStyle}" Fill="Purple" />
+            </RadioButton>
+            <RadioButton GroupName="theColors" Style="{StaticResource colorButtonStyle}" ToolTip="Gray"
+                         IsChecked="{Binding Path=TheColor, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=grayShape}">
+                <Rectangle Style="{StaticResource colorRectStyle}" Fill="Gray" />
+            </RadioButton>
+            <RadioButton GroupName="theColors" Style="{StaticResource colorButtonStyle}" ToolTip="Black"
+                         IsChecked="{Binding Path=TheColor, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=blackShape}">
+                <Rectangle Style="{StaticResource colorRectStyle}" Fill="Black" />
+            </RadioButton>
+            <RadioButton GroupName="theColors" Style="{StaticResource colorButtonStyle}" ToolTip="Custom"
+                         IsChecked="{Binding Path=TheColor, Mode=TwoWay, Converter={StaticResource enumConverter}, ConverterParameter=customShape}"
+                         MouseDoubleClick="OnCustomColorDoubleClick">
+                <Rectangle Style="{StaticResource colorRectStyle}" Fill="{Binding CustomColorBrush}" />
+            </RadioButton>
+        </StackPanel>
+        <Canvas x:Name="_mainCanvas" Background="White" MouseDown="OnMouseDown" MouseUp="OnMouseUp" MouseMove="OnMouseMove">
+            <ItemsControl ItemsSource="{Binding TheShapes}" Background="Transparent">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </Canvas> 
+    </DockPanel>
+</Window>

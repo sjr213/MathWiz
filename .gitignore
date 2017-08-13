@@ -1,0 +1,17 @@
+*.tss
+*.suo
+*.bak
+bin/
+obj/
+*.exe
+*.pdb
+*.dll
+packages/
+*.svn
+packages.config
+Bulb/Images/
+ipch/
+*.aps
+
+
+

@@ -503,7 +503,7 @@ namespace Microsoft.Samples.CustomControls
                     updateMarkerPosition(m_color);
                 }
             }
-            catch (FormatException fException)
+            catch (FormatException)
             {
 
                 SetValue(HexadecimalStringProperty, oldValue);

@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticeApp", "PracticeApp\PracticeApp.csproj", "{7B2A6BE9-263D-41B8-A792-8BBBCD1D382B}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureWiz", "PracticeApp\PictureWiz.csproj", "{7B2A6BE9-263D-41B8-A792-8BBBCD1D382B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMvvmLib", "MyMvvmLib\MyMvvmLib.csproj", "{6C08BD7F-2274-4ADA-B9A2-6C54876D544B}"
 EndProject

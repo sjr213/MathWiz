@@ -12,7 +12,7 @@ using System.IO;
 using System.Windows.Media;
 using System.Threading;
 
-namespace PracticeApp
+namespace PictureWiz
 {
     public class NamedImageVM : ViewModelBase<NamedImageModel>
     {

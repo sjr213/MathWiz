@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PracticeApp
+namespace PictureWiz
 {
     public class ImageFolder : IImageFolder
     {

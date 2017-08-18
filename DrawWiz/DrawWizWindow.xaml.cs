@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DrawWiz
 {
@@ -128,6 +120,21 @@ namespace DrawWiz
             }
         }
 
+        private Size GetTextSize(TextAndFontData data)
+        {
+            FontStretch stretch = new FontStretch();
+            
+            var formattedText = new FormattedText(
+                data.Text,
+                CultureInfo.CurrentUICulture,
+                FlowDirection.LeftToRight,
+                new Typeface(data.Family, data.Style, data.Weight, stretch),
+                data.Size,
+                Brushes.Black);
+
+            return new Size(formattedText.Width, formattedText.Height);
+        }
+
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             if (!(sender is Canvas))
@@ -165,6 +172,11 @@ namespace DrawWiz
                             return;
 
                         textData = dlg.TextFontData;
+
+                        firstLeftPt = pos;
+                        var textSize = GetTextSize(textData);
+                        pos.X += textSize.Width;
+                        pos.Y += textSize.Height;
                     }
                     vM.AddShape(firstLeftPt, pos, _tempShape, textData);           
                 }

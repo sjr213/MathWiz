@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MyMvvmLib
+﻿namespace MyMvvmLib
 {
-	public enum MessageBoxResult 
+    public enum MessageBoxResult 
     {
 		OK,
 		Cancel,

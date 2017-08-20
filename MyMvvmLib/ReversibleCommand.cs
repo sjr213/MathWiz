@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
 
 namespace MyMvvmLib
 {
-	public sealed class ReversibleCommand : ICommand 
+    public sealed class ReversibleCommand : ICommand 
     {
 		readonly IUndoCommand _command;
 		readonly UndoManager _mgr;

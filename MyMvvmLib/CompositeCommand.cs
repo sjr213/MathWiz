@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Collections.Generic;
 
+// Allows combining individual commands that can be executed together later or undone
 namespace MyMvvmLib
 {
-	public class CompositeCommand : CommandBase 
+    public class CompositeCommand : CommandBase 
     {
 		List<IUndoCommand> _commands = new List<IUndoCommand>();
 

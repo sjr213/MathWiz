@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
 
-namespace MyMvvmLib 
+namespace MyMvvmLib
 {
-	public abstract class CommandBase : IUndoCommand 
+    public abstract class CommandBase : IUndoCommand 
     {
 		public virtual bool CanExecute(object parameter) 
         {

@@ -2,23 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
-namespace MyMvvmLib 
+namespace MyMvvmLib
 {
-	public abstract class ObservableObject : INotifyPropertyChanged 
+    public abstract class ObservableObject : INotifyPropertyChanged 
     {
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		protected virtual void OnPropertyChanged(string propName) 
         {
 			Debug.Assert(GetType().GetProperty(propName) != null);
-			var pc = PropertyChanged;
-			if(pc != null)
-				pc(this, new PropertyChangedEventArgs(propName));
-		}
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
 
 		protected bool SetProperty<T>(ref T field, T value, string propName) 
         {
@@ -38,17 +34,16 @@ namespace MyMvvmLib
 				field = value;
 				var lambda = (LambdaExpression)expr;
 				MemberExpression memberExpr;
-				if(lambda.Body is UnaryExpression) 
+                if (lambda.Body is UnaryExpression unaryExpr)
                 {
-					var unaryExpr = (UnaryExpression)lambda.Body;
-					memberExpr = (MemberExpression)unaryExpr.Operand;
-				}
-				else 
+                    memberExpr = (MemberExpression)unaryExpr.Operand;
+                }
+                else
                 {
-					memberExpr = (MemberExpression)lambda.Body;
-				}
+                    memberExpr = (MemberExpression)lambda.Body;
+                }
 
-				OnPropertyChanged(memberExpr.Member.Name);
+                OnPropertyChanged(memberExpr.Member.Name);
 				return true;
 			}
 			return false;

@@ -6,28 +6,17 @@
 // 
 using System;
 using System.Windows;
-using System.Windows.Navigation;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.Windows.Ink;
 using System.Windows.Controls;
-using System.Collections.Generic;
 using System.Windows.Input;
-using System.Windows.Data;
-using System.Windows.Markup;
-using System.Text;
 
 namespace Microsoft.Samples.CustomControls
 {
-
-
     #region ColorPicker
 
     public class ColorPicker : Control
     {
-
-
         static ColorPicker()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ColorPicker), new FrameworkPropertyMetadata(typeof(ColorPicker)));
@@ -70,13 +59,7 @@ namespace Microsoft.Samples.CustomControls
             isAlphaChange = false;
             
             SelectedColor = m_color;
-            
-            
-
-            
         }
-
-
 
         #endregion
 
@@ -88,7 +71,6 @@ namespace Microsoft.Samples.CustomControls
         {
             get
             {
-
                 return (System.Windows.Media.Color)GetValue(SelectedColorProperty);
             }
             set
@@ -97,7 +79,6 @@ namespace Microsoft.Samples.CustomControls
                 setColor((Color)value);
             }
         }
-
 
         #region RGB Properties
         // Gets or sets the ARGB alpha value of the selected color.
@@ -481,7 +462,6 @@ namespace Microsoft.Samples.CustomControls
 
         protected virtual void OnHexadecimalStringChanged(string oldValue, string newValue)
         {
-
             try
             {
 
@@ -529,9 +509,7 @@ namespace Microsoft.Samples.CustomControls
 
         #endregion
 
-
         #region Template Part Event Handlers
-
 
         protected override void OnTemplateChanged(ControlTemplate oldTemplate, ControlTemplate newTemplate)
         {
@@ -550,7 +528,6 @@ namespace Microsoft.Samples.CustomControls
             base.OnTemplateChanged(oldTemplate, newTemplate);
         }
 
-
         private void BaseColorChanged(
             object sender,
             RoutedPropertyChangedEventArgs<Double> e)
@@ -561,7 +538,6 @@ namespace Microsoft.Samples.CustomControls
 
                 determineColor((Point)m_ColorPosition);
             }
-
         }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -573,8 +549,6 @@ namespace Microsoft.Samples.CustomControls
 
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
-
-
             if (e.LeftButton == MouseButtonState.Pressed)
             {
 
@@ -604,7 +578,6 @@ namespace Microsoft.Samples.CustomControls
         }
 
         #endregion
-
 
         #region Color Resolution Helpers
 

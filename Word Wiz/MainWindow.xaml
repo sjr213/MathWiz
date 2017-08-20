@@ -101,13 +101,6 @@
                     </myLib:AutoUpdateImage.Triggers>
                 </myLib:AutoUpdateImage>
 
-                <!--
-                <ContentControl.Triggers>
-                    <DataTrigger Property="ImagePathName" >
-                        
-                    </DataTrigger>
-                </ContentControl.Triggers>
-                -->
             </ContentControl>
             
         </Grid>

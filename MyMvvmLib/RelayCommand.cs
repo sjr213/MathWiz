@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
 
 namespace MyMvvmLib
 {
-	public class RelayCommand<T> : ICommand 
+    public class RelayCommand<T> : ICommand 
     {
 		private static bool CanExecute(T parameter) 
         { return true; }
@@ -16,9 +13,7 @@ namespace MyMvvmLib
 
 		public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null) 
         {
-			if(execute == null)
-				throw new ArgumentNullException("execute");
-			_execute = execute;
+            _execute = execute ?? throw new ArgumentNullException("execute");
 			_canExecute = canExecute ?? CanExecute;
 		}
 
@@ -32,13 +27,17 @@ namespace MyMvvmLib
 			add 
             {
 				if(_canExecute != null)
-					CommandManager.RequerySuggested += value;
-			}
+                {
+                    CommandManager.RequerySuggested += value;
+                }
+            }
 			remove 
             {
 				if(_canExecute != null)
-					CommandManager.RequerySuggested -= value;
-			}
+                {
+                    CommandManager.RequerySuggested -= value;
+                }
+            }
 		}
 
 		public void Execute(object parameter) 

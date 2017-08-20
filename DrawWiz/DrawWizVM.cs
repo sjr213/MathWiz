@@ -145,8 +145,6 @@ namespace DrawWiz
                 TheShapes.Add(realShape);
         }
 
-
-
         public UIElement MakeTempShape(Point pt1, Point pt2, UIElement tempShape)
         {
             DrawWizShape rawShape = ShapeConversionMethods.CreateRawShape(TheShape, TheColor, pt1, pt2, tempShape, new TextAndFontData(), Model.CustomColor);

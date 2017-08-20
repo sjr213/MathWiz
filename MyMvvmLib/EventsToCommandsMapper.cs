@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Reflection;
 
 namespace MyMvvmLib
 {
-	public static class EventsToCommandsMapper 
+    public static class EventsToCommandsMapper 
     {
 		public static EventToCommandCollection GetMapper(DependencyObject obj) 
         {

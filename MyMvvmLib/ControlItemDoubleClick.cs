@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -24,11 +19,11 @@ namespace MyMvvmLib
 
             if (value)
             {
-                element.PreviewMouseDoubleClick += new MouseButtonEventHandler(element_PreviewMouseDoubleClick);
+                element.PreviewMouseDoubleClick += new MouseButtonEventHandler(Element_PreviewMouseDoubleClick);
             }
         }
 
-        static void element_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        static void Element_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ItemsControl control = sender as ItemsControl;
 

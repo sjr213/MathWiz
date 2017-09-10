@@ -30,36 +30,33 @@ namespace MathWiz
 
             ProblemArguments args = new ProblemArguments();
 
-            // if subtraction the left argument is limited
-            // if addition the result is limited by min/max
+            // The arguments are limited by the min/max
             if (sign == enumSign.subtraction)
             {
-                int newValue = _random.Next(maxValue - 2 * minValue + 1) + 2 * minValue;
+                args.left = _random.Next(maxValue - minValue + 1) + minValue;
 
-                args.left = newValue;
-
-                args.right = _random.Next(args.left - minValue) + minValue;
+                args.right = _random.Next(args.left - minValue + 1) + minValue;
             }
             else if(sign == enumSign.addition)
             {
-                int newValue = _random.Next(maxValue - 2 * minValue + 1) + 2 * minValue;
+                args.left = _random.Next(maxValue - minValue + 1) + minValue;
 
-                args.left = _random.Next(newValue - minValue + 1) + minValue;
-
-                while (newValue - args.left < minValue)
-                    --args.left;
-
-                args.right = newValue - args.left;
+                args.right = _random.Next(maxValue - minValue + 1) + minValue;
             }
             else if(sign == enumSign.multiplication)
             {
-                args.left = _random.Next(maxValue);
-                args.right = _random.Next(maxValue);
+                args.left = _random.Next(maxValue - minValue + 1) + minValue;
+
+                args.right = _random.Next(args.left - minValue + 1) + minValue;
             }
             else if(sign == enumSign.division)
             {
-                args.right = _random.Next(maxValue);
-                args.left = args.right * _random.Next(maxValue);
+                args.right = _random.Next(maxValue - minValue + 1) + minValue;
+                if (args.right < 1)
+                    args.right = 1;
+
+                var mult = _random.Next(maxValue - minValue + 1) + minValue;
+                args.left = args.right * mult;
             }
 
             return args;

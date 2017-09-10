@@ -154,7 +154,10 @@ namespace MathWiz
                 try
                 {
                     int newValue = Convert.ToInt32(value);
-                    SetProperty(ref _rightValue, newValue, "RightValue");
+                    if(Sign == "÷" && newValue == 0)
+                        SetProperty(ref _rightValue, _rightValue, "RightValue");
+                    else
+                        SetProperty(ref _rightValue, newValue, "RightValue");
                 }
                 catch (System.Exception)
                 {

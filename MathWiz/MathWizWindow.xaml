@@ -43,7 +43,7 @@
             <Button Content="Next" Margin="5" Command="{Binding NextProblemCommand}" x:Name="nextButton"/>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Minimum" Style="{StaticResource commandTextBlock}"/>
-                <TextBox Text="{Binding MinValue}" Style="{StaticResource commandTextBox}"/>
+                <TextBox Text="{Binding MinValue}" Style="{StaticResource commandTextBox}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Maximum" Style="{StaticResource commandTextBlock}"/>
@@ -51,11 +51,11 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Percent Correct" Style="{StaticResource commandTextBlock}"/>
-                <TextBox Text="{Binding Score}" Style="{StaticResource commandTextBox}"/>          
+                <TextBox Text="{Binding Score}" Style="{StaticResource commandTextBox}" IsReadOnly="True"/>          
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Count" Style="{StaticResource commandTextBlock}"/>
-                <TextBox Text="{Binding ProblemCount}" Style="{StaticResource commandTextBox}"/>
+                <TextBox Text="{Binding ProblemCount}" Style="{StaticResource commandTextBox}" IsReadOnly="True"/>
             </StackPanel>
             <Button Content="Reset" Margin="5" Command="{Binding ResetCommand}" />
         </StackPanel>
@@ -110,19 +110,22 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
-            <TextBox Margin="5" Padding="5" FontSize="30" Text="{Binding LeftValue}" />
+            <TextBox Margin="5" Padding="5" FontSize="30" Text="{Binding LeftValue}" PreviewTextInput="textBoxValue_PreviewTextInput" 
+                     DataObject.Pasting="textBoxValue_Pasting"/>
             <ComboBox Margin="5" Padding="5" FontSize="30" Grid.Column="1" SelectedValuePath="Content" SelectedValue="{Binding Sign}">
                 <ComboBoxItem>+</ComboBoxItem>
                 <ComboBoxItem>-</ComboBoxItem>
                 <ComboBoxItem>x</ComboBoxItem>
                 <ComboBoxItem>÷</ComboBoxItem>
             </ComboBox>
-            <TextBox Margin="5" Padding="5" FontSize="30" Text="{Binding RightValue}" Grid.Column="2"/>
+            <TextBox Margin="5" Padding="5" FontSize="30" Text="{Binding RightValue}" Grid.Column="2" 
+                     PreviewTextInput="textBoxValue_PreviewTextInput" DataObject.Pasting="textBoxValue_Pasting"/>
             <Button Content="=" Margin="5" Padding="5" FontSize="30" Command="{Binding EqualsCommand}" Grid.Column="3"/>
             <Border BorderThickness="2" Grid.Column="4" Margin="0" Padding="0">
                 <TextBox Margin="0" Padding="5" FontSize="30" Text="{Binding Result}" 
                          KeyUp="OnResultKeyUp"
-                         x:Name="resultTextbox"/>
+                         x:Name="resultTextbox"
+                         PreviewTextInput="textBoxValue_PreviewTextInput" DataObject.Pasting="textBoxValue_Pasting"/>
                 <Border.Style>
                     <Style>
                         <Style.Triggers>

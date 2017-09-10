@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace MathWiz
 {
@@ -20,7 +14,7 @@ namespace MathWiz
             MathWizModel wizModel = new MathWizModel();
             MathWizVM vm = new MathWizVM(wizModel);
 
-            var win = new MainWindow
+            var win = new MathWizWindow
             {
                 DataContext = vm
             };
